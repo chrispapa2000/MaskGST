@@ -1,7 +1,6 @@
 *.pyc
 __pycache_/
 *.ckpt
-*.png
 *.pth
 *.ipynb
 lightning_logs/
