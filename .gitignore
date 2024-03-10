@@ -4,3 +4,4 @@ __pycache_/
 *.png
 *.pth
 *.ipynb
+lightning_logs/
