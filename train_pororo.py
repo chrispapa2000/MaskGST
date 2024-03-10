@@ -53,8 +53,6 @@ def main(args):
         vocab_size=vocab_size,
         max_story_length=args.max_story_length,
         transformer_type=args.transformer_type,
-        story_first=args.story_first,
-        story_last=args.story_last,
     )
 
     print(f"model: {model}", flush=True)
@@ -76,8 +74,12 @@ def main(args):
 
 
     # prepare trainer
-    trainer = Trainer(gpus=args.num_gpus, accelerator='ddp',  default_root_dir=args.default_root_dir, 
-                      resume_from_checkpoint=args.resume_from_checkpoint, max_epochs=args.max_epochs)
+    trainer = Trainer(gpus=args.num_gpus, 
+                      accelerator='ddp',  
+                      default_root_dir=args.default_root_dir, 
+                    #   resume_from_checkpoint=args.resume_from_checkpoint, 
+                      max_epochs=args.max_epochs
+    )
 
     # train
     trainer.fit(model, train_dataloader, eval_dataloader)
@@ -90,36 +92,32 @@ if __name__=="__main__":
     parser.add_argument('--num_gpus', type=int)
     parser.add_argument('--default_root_dir', type=str, required=True)
     parser.add_argument('--resume_from_checkpoint', type=str, default='None')
-    parser.add_argument('--tokenizer_path', type=str)
-    parser.add_argument('--vq_vae_config', default='taming_transformers/configs/imagenet_vqgan.yaml')
-    parser.add_argument('--vq_vae_path', default='taming_transformers/checkpoints/f16-1024/last.ckpt')   
-    parser.add_argument('--batch_size', default=6, type=int)
+    parser.add_argument('--tokenizer_path', type=str, default='tokenizer/tokenizer_vocab2500_aug.json')
+    parser.add_argument('--vq_vae_config', type=str, default='taming_transformers/configs/custom/f8_128.yaml')
+    parser.add_argument('--vq_vae_path', type=str, required=True)   
+    parser.add_argument('--batch_size', type=int, default=6)
 
-    parser.add_argument('--max_story_length', type=int, required=True)
-    parser.add_argument('--num_embeddings', default=256, type=int)
-    parser.add_argument('--num_transformer_layers', default=6, type=int)
-    parser.add_argument('--num_transformer_heads', default=8,type=int)
-    parser.add_argument('--latent_image_size', default=256,type=int)
-    parser.add_argument('--text_dim', default=512,type=int)
-    parser.add_argument('--input_dim', default=768, help="dimension of the transformer",type=int)
-    parser.add_argument('--output_dim', default=256, help="number of tokens in the vqvae",type=int)
-    parser.add_argument('--device', default='gpu')
-    parser.add_argument('--no_mask_token_prob', default=0.25)
-    parser.add_argument('--vqvae_mode', default='ddp', type=str)
-    parser.add_argument('--text_encoder', default='None', type=str)
-    parser.add_argument('--max_epochs', default=200, type=int)
-    parser.add_argument('--transformer_type', default='baseline', type=str)
-    parser.add_argument('--story_first', default='False', type=str)
-    parser.add_argument('--story_last', default='False', type=str)
-    parser.add_argument('--use_chatgpt_captions', default='False', type=str)
+    parser.add_argument('--max_story_length', type=int, default=345)
+    parser.add_argument('--num_embeddings', type=int, default=128)
+    parser.add_argument('--num_transformer_layers', type=int, default=6)
+    parser.add_argument('--num_transformer_heads', type=int, default=8)
+    parser.add_argument('--latent_image_size', type=int, default=64)
+    parser.add_argument('--text_dim', type=int, default=2048)
+    parser.add_argument('--input_dim', type=int, default=2048, help="dimension of the transformer")
+    parser.add_argument('--output_dim', type=int, default=128, help="number of tokens in the vqvae")
+    parser.add_argument('--device', type=str, default='gpu')
+    parser.add_argument('--no_mask_token_prob', type=float, default=0.25)
+    parser.add_argument('--vqvae_mode', type=str, default='ddp')
+    parser.add_argument('--text_encoder', type=str, default='None')
+    parser.add_argument('--max_epochs', type=int, default=250)
+    parser.add_argument('--transformer_type', type=str, default='baseline')
+    parser.add_argument('--use_chatgpt_captions', type=str, default='True')
 
 
     args = parser.parse_args()
     args.resume_from_checkpoint = None if args.resume_from_checkpoint == 'None' else args.resume_from_checkpoint 
     args.text_encoder = None if args.text_encoder == 'None' else args.text_encoder
     args.batch_size = args.batch_size // args.num_gpus
-    args.story_first = True if args.story_first=='True' else False
-    args.story_last = True if args.story_last=='True' else False
     args.use_chatgpt_captions = True if args.use_chatgpt_captions=='True' else False
     print(f"batch size per gpu : {args.batch_size}", flush=True)
     main(args)
