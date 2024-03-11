@@ -383,7 +383,7 @@ class maskGST(pl.LightningModule):
             noise_schedule=cosine_schedule,
             no_mask_token_prob=0.25,
             images_per_story=5, 
-            train_text_embeddings=False,
+            train_text_embeddings=True,
             vocab_size=None,
             max_story_length=345, # maximum number of tokens in a story description
             transformer_type:Optional[str]='baseline',
