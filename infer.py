@@ -142,11 +142,9 @@ def main(args):
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(description='arguments for model training')
-    parser.add_argument('--num_nodes', type=int)
     parser.add_argument('--num_workers', type=int)
-    parser.add_argument('--num_gpus', type=int)
-    parser.add_argument('--tokenizer_path', type=str)
-    parser.add_argument('--vq_vae_config', type=str, default='taming_transformers/configs/imagenet_vqgan.yaml')
+    parser.add_argument('--tokenizer_path', type=str, default='tokenizer/tokenizer_vocab2500_aug.json')
+    parser.add_argument('--vq_vae_config', type=str, default='taming_transformers/configs/custom/f8_128.yaml')
     parser.add_argument('--batch_size', type=int, default=1)
 
     parser.add_argument('--num_embeddings', type=int, default=128)
