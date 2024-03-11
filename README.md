@@ -33,6 +33,6 @@ python infer.py --num_workers <NUM_WORKERS> \
     --model_path <PRETRAINED_MASKGST_PATH>
 ```
 
-## Acknoledgements 
+## Acknowledgement 
 - VQ-GAN's implementation from [Taming Transformers](https://github.com/CompVis/taming-transformers) is used
 - The code for the Masked Generative Transformer is adapted from this open source implementation of [MUSE](https://github.com/lucidrains/muse-maskgit-pytorch)
