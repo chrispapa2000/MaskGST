@@ -58,7 +58,6 @@ def infer(model, dataset, batch_size, num_workers, timesteps, outfolder, fmap_si
     
 
 def main(args):
-    # for reproducibility 1 3 6 7 8 9
     torch.manual_seed(10)
     
     vq_vae = load_vqgan(config_path=args.vq_vae_config)
@@ -145,7 +144,7 @@ if __name__=="__main__":
     parser.add_argument('--num_workers', type=int)
     parser.add_argument('--tokenizer_path', type=str, default='tokenizer/tokenizer_vocab2500_aug.json')
     parser.add_argument('--vq_vae_config', type=str, default='taming_transformers/configs/custom/f8_128.yaml')
-    parser.add_argument('--batch_size', type=int, default=1)
+    parser.add_argument('--batch_size', type=int, default=8)
 
     parser.add_argument('--num_embeddings', type=int, default=128)
     parser.add_argument('--num_transformer_layers', type=int, default=6)
