@@ -1,4 +1,4 @@
-# Official PyTorch Implementation of MaskGST 
+# Official PyTorch Implementation of MaskGST (Masked Generative Story Transformer with Character Guidance and Caption Augmentation)
 
 ![example generations for our model](/assets/example.png "example generations for our model")
 
@@ -33,6 +33,6 @@ python infer.py --num_workers <NUM_WORKERS> \
     --model_path <PRETRAINED_MASKGST_PATH>
 ```
 
-## Acknowledgement 
+## Acknowledgements
 - VQ-GAN's implementation from [Taming Transformers](https://github.com/CompVis/taming-transformers) is used
 - The code for the Masked Generative Transformer is adapted from this open source implementation of [MUSE](https://github.com/lucidrains/muse-maskgit-pytorch)
