@@ -36,3 +36,15 @@ python infer.py --num_workers <NUM_WORKERS> \
 ## Acknowledgements
 - VQ-GAN's implementation from [Taming Transformers](https://github.com/CompVis/taming-transformers) is used
 - The code for the Masked Generative Transformer is adapted from this open source implementation of [MUSE](https://github.com/lucidrains/muse-maskgit-pytorch)
+
+## Citation
+```
+@misc{papadimitriou2024masked,
+      title={Masked Generative Story Transformer with Character Guidance and Caption Augmentation}, 
+      author={Christos Papadimitriou and Giorgos Filandrianos and Maria Lymperaiou and Giorgos Stamou},
+      year={2024},
+      eprint={2403.08502},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
+```
