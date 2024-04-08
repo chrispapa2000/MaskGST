@@ -22,7 +22,7 @@ pip install -r requirements.txt
 ```
 
 ## Prepare Data
-Dowload the Pororo-SV dataset from the [StoryDALL-E](https://github.com/adymaharana/storydalle/tree/main?tab=readme-ov-file) and extract it under ```../data/```
+Dowload the Pororo-SV dataset from [StoryDALL-E](https://github.com/adymaharana/storydalle/tree/main?tab=readme-ov-file) and extract it under ```../data/```
 
 ## Training for Pororo-SV 
 ### Training VQ-GAN 
