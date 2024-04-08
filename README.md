@@ -2,6 +2,25 @@
 
 ![example generations for our model](/assets/example.png "example generations for our model")
 
+## Setup
+This project was developed in `Python3.8` using PyTorch `v1.8.0`
+
+Start by setting up a virtual environment:
+```
+virtualenv -p /usr/bin/python3.8 venv
+source venv/bin/activate
+```
+
+Install PyTorch:
+```
+pip install torch==1.8.0+cu111 torchvision==0.9.0+cu111 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html
+```
+
+Install the remaining dependencies:
+```
+pip install -r requirements.txt
+```
+
 ## Prepare Data
 Dowload the Pororo-SV dataset from the [StoryDALL-E](https://github.com/adymaharana/storydalle/tree/main?tab=readme-ov-file) and extract it under ```../data/```
 
